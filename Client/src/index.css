@@ -1,0 +1,48 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap"); */
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap"); */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Overriding Ant-D Button */
+button {
+  /* border-radius: 0px !important; */
+  height: 100px;
+  padding: 150px;
+}
+
+* {
+  /* font-family: "Lato", sans-serif !important; */
+  /* font-family: "Roboto Mono", monospace; */
+  font-family: 'Roboto', sans-serif;
+  padding: 0;
+  margin: 0;
+}
+
+input {
+  height: 28px !important;
+  /* border: 1px solid #6a6a6a !important; */
+  border-radius: 2px;
+}
+.ant-form-item {
+  margin-bottom: 0px !important;
+}
+a:hover {
+  text-decoration: underline !important;
+  color: red;
+}
+
+.custom-password-input .ant-input {
+  height: 30px !important;
+}
+
+i {
+  font-size: 18px;
+}
+
+
+ table {
+  border: 10px solid rgb(245, 245, 245) !important;
+}
