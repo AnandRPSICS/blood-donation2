@@ -4,7 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoginImage1 from "../../assets/LoginImage1.jpg";
 import image1 from "../../../public/Images/image1.jpg";
 
-import {encodedLogin}  from '../../utils/EncodedImages/encodedLogin'
+import { encodedLogin } from "../../utils/EncodedImages/encodedLogin";
 
 import { LoginUser } from "../../api/users";
 import { useForm } from "antd/es/form/Form";
@@ -16,7 +16,7 @@ const { Option } = Select;
 
 export const Login = () => {
   const [type, setType] = useState("donor");
-  const [form] = useForm(); 
+  const [form] = useForm();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
@@ -87,8 +87,7 @@ export const Login = () => {
       <div
         class="flex-1 bg-cover bg-center hidden lg:block"
         style={{ backgroundImage: `url(${encodedLogin})` }}
-      >
-      </div>
+      ></div>
       {/* Right Side: Login Form */}
       <div className="flex-1 p-8 flex items-center justify-center">
         <Form
@@ -101,7 +100,7 @@ export const Login = () => {
           <h1 className="text-2xl font-bold mb-4">
             {type.toUpperCase()} - LOGIN
           </h1>
-        
+
           <Form.Item
             style={{ marginTop: "15px" }}
             label="Email"
@@ -137,14 +136,12 @@ export const Login = () => {
               onChange={(value) => setType(value)}
             >
               <Option value="donor">Donor</Option>
-              <Option value="hospital">Hospital</Option>
-              <Option value="organization">Organization</Option>
+              <Option value="recipient">recipient</Option>
             </Select>
           </Form.Item>
 
           <div className="flex flex-col items-center mt-6">
             {" "}
-        
             <Button type="primary" className="w-full" htmlType="submit">
               LOGIN
             </Button>

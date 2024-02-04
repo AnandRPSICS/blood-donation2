@@ -1,24 +1,8 @@
-# Full-Stack-Blood-Bank-App (REACT.js, Tailwind CSS and Ant Design, complex Mongo Db queries like aggregation, grouping )
+## Steps
 
+## 1. Git clone
 
-<p>1. Using Vite Template for fast performance</p>
-
-```
-$ npm create vite@latest
-```
-
-
-<p>2. Using AntD purely for component purpose</p>
-
-```
-$ npm install antd --save
-```
-
-<p>3. Using Tailwind CSS for styling </p>
-
-```
-$ npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-```
-
-
+// 1. https://github.com/AnandRPSICS/blood-donation2.git
+// 2. cd Server => npm install => npm start
+// 3. cd Client => npm install => npm start
+// 4. visti http://localhost:5174

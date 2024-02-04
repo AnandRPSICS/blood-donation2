@@ -19,13 +19,13 @@ export const Register = () => {
   const dispatch = useDispatch();
   const { Step } = Steps;
   const [formValues, setFormValues] = useState({});
-  const [data, setData] = useState({})
+  const [data, setData] = useState({});
 
   console.log({ currentStep });
 
   const handleNextStep = (values) => {
     setCurrentStep((prevStep) => prevStep + 1);
-    console.log('value', values);
+    console.log("value", values);
     setFormValues({ ...formValues, ...values });
   };
 
@@ -37,11 +37,10 @@ export const Register = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };
 
-
   const onFinish = async (values) => {
     try {
       dispatch(SetLoading(true));
-      console.log("formValues", formValues)
+      console.log("formValues", formValues);
       const response = await RegisteredUser({
         ...formValues,
         userType: type,
@@ -86,7 +85,7 @@ export const Register = () => {
 
         <Select
           style={{
-            width: '100%',
+            width: "100%",
           }}
           className="mb-4"
           // showSearch
@@ -105,8 +104,7 @@ export const Register = () => {
           }
           options={[
             { value: "donor", label: "Donor" },
-            { value: "hospital", label: "Hospital" },
-            { value: "organization", label: "Organization" },
+            { value: "recipient", label: "Recipient" },
           ]}
         />
 
@@ -118,12 +116,13 @@ export const Register = () => {
                   label="Name"
                   name="name"
                   rules={getAndDesignValidation()}
-                ><Input />
+                >
+                  <Input />
                 </Form.Item>
                 <Form.Item
                   label="Email"
                   name="email"
-                  placeholder='Enter Email'
+                  placeholder="Enter Email"
                   rules={[
                     { type: "email", message: "Invalid E-mail" },
                     ...getAndDesignValidation(),
@@ -155,53 +154,103 @@ export const Register = () => {
                 </Form.Item> */}
               </>
             )}
+            {type === "recipient" && (
+              <>
+                <Form.Item
+                  label="Name"
+                  name="name"
+                  rules={getAndDesignValidation()}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label="Email"
+                  name="email"
+                  placeholder="Enter Email"
+                  rules={[
+                    { type: "email", message: "Invalid E-mail" },
+                    ...getAndDesignValidation(),
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+                <Form.Item
+                  label="Phone"
+                  name="phone"
+                  rules={getAndDesignValidation()}
+                >
+                  <Input type="number" />
+                </Form.Item>
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  rules={[{ min: 6 }, ...getAndDesignValidation()]}
+                >
+                  <Input.Password className="custom-password-input" />
+                </Form.Item>
+              </>
+            )}
           </>
         )}
 
-        {type == "hospital" || type == "organization" ?
+        {type == "hospital" || type == "organization" ? (
           <>
             <Hospital type={type} currentStep={currentStep} />
-            {
-              currentStep === 1 ?
-                <NextButton onClick={() => handleNextStep(form.getFieldsValue())} form={form} data={data} setData={setData} />
-                :
-                currentStep === 2 ?
-                  <>
-                    <LeftCircleFilled
-                      style={{ fontSize: "30px", marginTop: '5px' }}
-                      onClick={handlePrevStep}
-                    />
-                    <NextButton form={form} onClick={() => handleNextStep(form.getFieldsValue())} />
-                  </>
-                  :
-                  <>
-                    <LeftCircleFilled
-                      style={{ fontSize: "30px", marginTop: '5px' }}
-                      onClick={handlePrevStep}
-                    />
-                    <SubmitButton form={form} onClick={() => handleSubmit(form.getFieldsValue())} />
-
-                  </>
-            }
+            {currentStep === 1 ? (
+              <NextButton
+                onClick={() => handleNextStep(form.getFieldsValue())}
+                form={form}
+                data={data}
+                setData={setData}
+              />
+            ) : currentStep === 2 ? (
+              <>
+                <LeftCircleFilled
+                  style={{ fontSize: "30px", marginTop: "5px" }}
+                  onClick={handlePrevStep}
+                />
+                <NextButton
+                  form={form}
+                  onClick={() => handleNextStep(form.getFieldsValue())}
+                />
+              </>
+            ) : (
+              <>
+                <LeftCircleFilled
+                  style={{ fontSize: "30px", marginTop: "5px" }}
+                  onClick={handlePrevStep}
+                />
+                <SubmitButton
+                  form={form}
+                  onClick={() => handleSubmit(form.getFieldsValue())}
+                />
+              </>
+            )}
           </>
-          :
-          <SubmitButton form={form} onClick={() => handleSubmit(form.getFieldsValue())} />
-        }
-        {currentStep > 1 && currentStep <= 3 && (
-          <>
-          </>
+        ) : (
+          <SubmitButton
+            form={form}
+            onClick={() => handleSubmit(form.getFieldsValue())}
+          />
         )}
+        {currentStep > 1 && currentStep <= 3 && <></>}
         <Link to="/login" className="mt-4 text-center block text-gray-500">
           Already have an account? Login
         </Link>
       </Form>
-    </div >
+    </div>
   );
 };
 
 const SubmitButton = ({ onClick }) => {
   return (
-    <Button type="primary" htmlType="submit" onClick={onClick} className="col-span-2 uppercase bg-black mt-5" block>
+    <Button
+      type="primary"
+      htmlType="submit"
+      onClick={onClick}
+      className="col-span-2 uppercase bg-black mt-5"
+      block
+    >
       Submit
     </Button>
   );
@@ -209,7 +258,12 @@ const SubmitButton = ({ onClick }) => {
 
 const NextButton = ({ onClick }) => {
   return (
-    <Button type="primary" onClick={onClick} className="col-span-2 uppercase bg-black mt-5" block>
+    <Button
+      type="primary"
+      onClick={onClick}
+      className="col-span-2 uppercase bg-black mt-5"
+      block
+    >
       Next
     </Button>
   );
